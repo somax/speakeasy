@@ -491,6 +491,7 @@ exports.totp.verify = function totpVerify (options) {
  *   implementation.) Output a Google Authenticator otpauth:// QR code URL.
  * @param {String} [options.issuer=''] The provider or service with which the
  *   secret key is associated.
+ * @param {String} [options.key=''] The given ascii key
  * @return {Object}
  * @return {GeneratedSecret} The generated secret key.
  */
@@ -511,7 +512,7 @@ exports.generateSecret = function generateSecret (options) {
   }
 
   // generate an ascii key
-  var key = this.generateSecretASCII(length, symbols);
+  var key = options.key || this.generateSecretASCII(length, symbols);
 
   // return a SecretKey with ascii, hex, and base32
   var SecretKey = {};
